@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PeopleStrong – Mobile App Wireframe</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #2B2EE8;
+    --blue-dark: #1a1cc4;
+    --blue-light: #eeeeff;
+    --teal: #00B8A9;
+    --orange: #FF6B35;
+    --yellow: #FFD166;
+    --white: #ffffff;
+    --gray-50: #F8F9FC;
+    --gray-100: #EEF0F6;
+    --gray-200: #D8DCE8;
+    --gray-400: #9198B0;
+    --gray-700: #3D4467;
+    --gray-900: #1A1D2E;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 16px rgba(43,46,232,0.12);
+    --shadow-lg: 0 8px 32px rgba(43,46,232,0.18);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #0E0F1A;
+    color: var(--gray-900);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 80px;
+  }
+
+  /* Page header */
+  .page-header {
+    text-align: center;
+    margin-bottom: 48px;
+    color: white;
+  }
+  .page-header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .page-header p { font-size: 14px; color: #9198B0; }
+  .badge {
+    display: inline-block;
+    background: var(--blue);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* Screens grid */
+  .screens-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
+    gap: 40px;
+    justify-content: center;
+    max-width: 1400px;
+    width: 100%;
+  }
+
+  /* Phone shell */
+  .phone {
+    background: #1C1E30;
+    border-radius: 40px;
+    padding: 12px;
+    box-shadow: 0 0 0 1px #2a2d45, 0 24px 60px rgba(0,0,0,0.6);
+    position: relative;
+  }
+  .phone-inner {
+    background: var(--gray-50);
+    border-radius: 30px;
+    overflow: hidden;
+    height: 640px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .phone-notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 28px;
+    background: #1C1E30;
+    border-radius: 0 0 18px 18px;
+    z-index: 10;
+  }
+
+  /* Screen label */
+  .screen-label {
+    text-align: center;
+    color: #9198B0;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* Status bar */
+  .status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 20px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-900);
+    background: white;
+  }
+  .status-bar.dark { background: var(--blue); color: white; }
+  .status-icons { display: flex; gap: 4px; align-items: center; }
+  .signal-bar { width: 3px; background: currentColor; border-radius: 1px; }
+
+  /* ==================== SCREEN 1: HOME ==================== */
+  .home-header {
+    background: var(--blue);
+    padding: 12px 20px 28px;
+    color: white;
+  }
+  .home-header .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .logo { font-size: 15px; font-weight: 800; letter-spacing: -0.3px; }
+  .logo span { color: var(--yellow); }
+  .header-icons { display: flex; gap: 12px; }
+  .icon-btn {
+    width: 32px; height: 32px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+  }
+  .avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--yellow); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #1a1a1a; }
+  .greeting { font-size: 15px; font-weight: 400; margin-bottom: 2px; opacity: 0.9; }
+  .greeting strong { font-weight: 800; }
+  .location-tag { display: flex; align-items: center; gap: 4px; font-size: 12px; opacity: 0.7; }
+
+  /* Punch card */
+  .punch-card {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .punch-item { flex: 1; }
+  .punch-label { font-size: 10px; opacity: 0.7; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .punch-time { font-size: 16px; font-weight: 800; }
+  .punch-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.2); }
+  .punch-btn {
+    width: 36px; height: 36px;
+    background: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    margin-left: auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  /* Content area */
+  .content { flex: 1; overflow-y: auto; padding: 16px; background: var(--gray-50); }
+  .content::-webkit-scrollbar { display: none; }
+
+  /* Banner card */
+  .banner {
+    background: linear-gradient(135deg, #eeeeff 0%, #dde0ff 100%);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .banner-text h4 { font-size: 14px; font-weight: 800; color: var(--blue); margin-bottom: 4px; }
+  .banner-text p { font-size: 11px; color: var(--gray-400); }
+  .banner-link { font-size: 11px; color: var(--blue); font-weight: 700; margin-top: 6px; display: block; }
+  .banner-icon { font-size: 36px; }
+
+  /* Section */
+  .section-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--gray-900);
+    margin-bottom: 10px;
+    letter-spacing: -0.2px;
+  }
+
+  /* Quick actions grid */
+  .quick-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .quick-item { text-align: center; }
+  .quick-icon {
+    width: 48px; height: 48px;
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    margin: 0 auto 5px;
+  }
+  .quick-label { font-size: 9px; font-weight: 600; color: var(--gray-700); line-height: 1.3; }
+  .q-orange { background: #FFF0EA; }
+  .q-blue { background: var(--blue-light); }
+  .q-teal { background: #E0F8F6; }
+  .q-purple { background: #F3EEFF; }
+
+  /* Favourites row */
+  .fav-row {
+    display: flex; gap: 10px; margin-bottom: 16px;
+  }
+  .fav-item {
+    flex: 1;
+    background: white;
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    display: flex; align-items: center; gap: 8px;
+    box-shadow: var(--shadow-sm);
+  }
+  .fav-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+  .fav-label { font-size: 11px; font-weight: 700; color: var(--gray-900); }
+
+  /* Bottom nav */
+  .bottom-nav {
+    background: white;
+    border-top: 1px solid var(--gray-100);
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0 16px;
+  }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .nav-icon { font-size: 18px; }
+  .nav-label { font-size: 9px; font-weight: 600; color: var(--gray-400); }
+  .nav-item.active .nav-icon { filter: none; }
+  .nav-item.active .nav-label { color: var(--blue); }
+  .nav-active-dot { width: 4px; height: 4px; background: var(--blue); border-radius: 50%; margin-top: 1px; }
+
+  /* ==================== SCREEN 2: ATTENDANCE ==================== */
+  .att-header {
+    background: var(--blue);
+    padding: 12px 20px 24px;
+    color: white;
+  }
+  .back-row {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
+  }
+  .back-btn { font-size: 18px; opacity: 0.8; cursor: pointer; }
+  .page-title { font-size: 16px; font-weight: 800; }
+
+  /* Clock widget */
+  .clock-widget {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .clock-time { font-size: 42px; font-weight: 800; letter-spacing: -1px; margin-bottom: 2px; }
+  .clock-date { font-size: 12px; opacity: 0.7; margin-bottom: 16px; }
+  .clock-actions { display: flex; gap: 10px; }
+  .clock-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: var(--radius-sm);
+    font-size: 12px; font-weight: 800;
+    text-align: center;
+  }
+  .btn-punch-in { background: white; color: var(--blue); }
+  .btn-punch-out { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3); }
+
+  /* Summary cards */
+  .summary-row {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 16px;
+  }
+  .summary-card {
+    background: white;
+    border-radius: var(--radius-sm);
+    padding: 12px 8px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+  .sum-val { font-size: 18px; font-weight: 800; color: var(--blue); margin-bottom: 2px; }
+  .sum-label { font-size: 9px; color: var(--gray-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+
+  /* Timeline */
+  .timeline { background: white; border-radius: var(--radius); padding: 14px; box-shadow: var(--shadow-sm); }
+  .timeline-title { font-size: 12px; font-weight: 800; margin-bottom: 12px; color: var(--gray-900); }
+  .timeline-item {
+    display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; position: relative;
+  }
+  .tl-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 3px; flex-shrink: 0; }
+  .tl-in { background: var(--teal); }
+  .tl-out { background: var(--orange); }
+  .tl-line { position: absolute; left: 4px; top: 16px; bottom: -10px; width: 2px; background: var(--gray-100); }
+  .tl-info { flex: 1; }
+  .tl-type { font-size: 11px; font-weight: 700; color: var(--gray-900); }
+  .tl-time { font-size: 10px; color: var(--gray-400); }
+  .tl-tag { font-size: 9px; background: var(--blue-light); color: var(--blue); padding: 2px 8px; border-radius: 20px; font-weight: 700; display: inline-block; margin-top: 2px; }
+
+  /* ==================== SCREEN 3: TEAM ==================== */
+  .team-header {
+    background: var(--blue);
+    padding: 12px 20px 20px;
+    color: white;
+  }
+
+  /* Search bar */
+  .search-bar {
+    background: white;
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow-sm);
+  }
+  .search-bar input {
+    border: none; outline: none; flex: 1; font-family: inherit;
+    font-size: 12px; color: var(--gray-900);
+  }
+  .search-bar span { color: var(--gray-400); font-size: 14px; }
+
+  /* Tabs */
+  .tabs {
+    display: flex; gap: 0; background: var(--gray-100); border-radius: var(--radius-sm);
+    padding: 3px; margin-bottom: 14px;
+  }
+  .tab {
+    flex: 1; text-align: center; padding: 6px; font-size: 10px;
+    font-weight: 700; border-radius: 7px; color: var(--gray-400);
+    text-transform: uppercase; letter-spacing: 0.3px;
+  }
+  .tab.active { background: white; color: var(--blue); box-shadow: var(--shadow-sm); }
+
+  /* Team member card */
+  .member-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 14px;
+    margin-bottom: 10px;
+    box-shadow: var(--shadow-sm);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .member-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800; color: white; flex-shrink: 0;
+  }
+  .member-info { flex: 1; }
+  .member-name { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+  .member-role { font-size: 10px; color: var(--gray-400); margin-bottom: 4px; }
+  .status-pill {
+    font-size: 9px; font-weight: 700; padding: 2px 8px;
+    border-radius: 20px; display: inline-block;
+  }
+  .s-in { background: #E0F8F2; color: #00855C; }
+  .s-out { background: #FFE8E0; color: #C84000; }
+  .s-leave { background: #FFF3D6; color: #A06000; }
+  .member-action {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--blue-light);
+    display: flex; align-items: center; justify-content: center; font-size: 11px;
+  }
+
+  /* ==================== SCREEN 4: LEAVE ==================== */
+  .leave-header {
+    background: var(--blue);
+    padding: 12px 20px 20px;
+    color: white;
+  }
+
+  /* Balance cards */
+  .balance-row { display: flex; gap: 8px; margin-bottom: 14px; }
+  .balance-card {
+    flex: 1; background: white; border-radius: var(--radius-sm);
+    padding: 12px; box-shadow: var(--shadow-sm);
+  }
+  .bal-type { font-size: 9px; color: var(--gray-400); font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 2px; }
+  .bal-days { font-size: 22px; font-weight: 800; color: var(--blue); }
+  .bal-label { font-size: 9px; color: var(--gray-400); }
+  .bal-bar { height: 3px; background: var(--gray-100); border-radius: 2px; margin-top: 6px; }
+  .bal-fill { height: 3px; border-radius: 2px; }
+
+  /* Leave form */
+  .leave-form { background: white; border-radius: var(--radius); padding: 14px; box-shadow: var(--shadow-sm); margin-bottom: 12px; }
+  .form-title { font-size: 12px; font-weight: 800; margin-bottom: 12px; }
+  .form-field { margin-bottom: 10px; }
+  .field-label { font-size: 10px; font-weight: 700; color: var(--gray-400); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .field-input {
+    background: var(--gray-50); border: 1px solid var(--gray-100);
+    border-radius: var(--radius-sm); padding: 8px 12px;
+    font-size: 12px; font-family: inherit; color: var(--gray-900);
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+  }
+  .date-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  .submit-btn {
+    width: 100%; background: var(--blue); color: white;
+    border: none; border-radius: var(--radius-sm); padding: 12px;
+    font-size: 13px; font-weight: 800; font-family: inherit;
+    cursor: pointer;
+  }
+
+  /* Leave history */
+  .history-item {
+    background: white; border-radius: var(--radius-sm);
+    padding: 12px; margin-bottom: 8px; box-shadow: var(--shadow-sm);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hist-color { width: 4px; height: 40px; border-radius: 2px; }
+  .hist-info { flex: 1; }
+  .hist-type { font-size: 12px; font-weight: 700; }
+  .hist-dates { font-size: 10px; color: var(--gray-400); margin-top: 2px; }
+  .hist-status { font-size: 9px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+  .h-approved { background: #E0F8F2; color: #00855C; }
+  .h-pending { background: #FFF3D6; color: #A06000; }
+
+  /* Floating annotation */
+  .annotation {
+    position: absolute;
+    background: rgba(255,255,0,0.92);
+    color: #1a1a1a;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 20;
+    pointer-events: none;
+    letter-spacing: 0.2px;
+  }
+  .ann-arrow::before {
+    content: '';
+    position: absolute;
+    border: 4px solid transparent;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="badge">Wireframe Prototype</div>
+  <h1>PeopleStrong Mobile App</h1>
+  <p>4-screen wireframe: Home · Attendance · Team Management · Leave</p>
+</div>
+
+<div class="screens-grid">
+
+  <!-- ====== SCREEN 1: HOME ====== -->
+  <div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="phone-notch"></div>
+
+        <!-- Status bar -->
+        <div class="status-bar dark">
+          <span>10:28</span>
+          <div class="status-icons">
+            <div class="signal-bar" style="height:6px"></div>
+            <div class="signal-bar" style="height:8px"></div>
+            <div class="signal-bar" style="height:10px"></div>
+            <div class="signal-bar" style="height:12px"></div>
+            <span style="margin-left:4px">4G</span>
+          </div>
+        </div>
+
+        <!-- Home header -->
+        <div class="home-header">
+          <div class="top-row">
+            <div class="logo">people<span>strong</span><sup style="color:var(--yellow);font-size:8px">✦</sup></div>
+            <div class="header-icons">
+              <div class="icon-btn">🔍</div>
+              <div class="icon-btn">🔔</div>
+              <div class="avatar">AG</div>
+            </div>
+          </div>
+          <div class="greeting">Good Morning, <strong>Aditya Grewal 👋</strong></div>
+          <div class="location-tag">📍 Office – Bangalore HQ</div>
+          <div class="punch-card">
+            <div class="punch-item">
+              <div class="punch-label">Punch In</div>
+              <div class="punch-time">10:27</div>
+            </div>
+            <div class="punch-divider"></div>
+            <div class="punch-item">
+              <div class="punch-label">Punch Out</div>
+              <div class="punch-time">--:--</div>
+            </div>
+            <div class="punch-btn">⏏</div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+
+          <!-- Quick actions -->
+          <div class="section-title" style="margin-bottom:12px">Quick Actions</div>
+          <div class="quick-grid" style="margin-bottom:16px">
+            <div class="quick-item">
+              <div class="quick-icon q-orange">🏃</div>
+              <div class="quick-label">Apply Leave</div>
+            </div>
+            <div class="quick-item">
+              <div class="quick-icon q-blue">👥</div>
+              <div class="quick-label">My Team</div>
+            </div>
+            <div class="quick-item">
+              <div class="quick-icon q-teal">📋</div>
+              <div class="quick-label">My Tasks</div>
+            </div>
+            <div class="quick-item">
+              <div class="quick-icon q-purple">📊</div>
+              <div class="quick-label">Reports</div>
+            </div>
+          </div>
+
+          <!-- Banner -->
+          <div class="banner">
+            <div class="banner-text">
+              <h4>Flexible Benefit Policy</h4>
+              <p>Submit claims before Mar 31</p>
+              <span class="banner-link">View Details ↗</span>
+            </div>
+            <div class="banner-icon">📨</div>
+          </div>
+
+          <!-- Favourites -->
+          <div class="section-title">Favourites</div>
+          <div class="fav-row">
+            <div class="fav-item">
+              <div class="fav-icon q-orange">🏃</div>
+              <div class="fav-label">Apply Leave</div>
+            </div>
+            <div class="fav-item">
+              <div class="fav-icon q-blue" style="background:var(--blue);color:white">+</div>
+              <div class="fav-label">Add Favourites</div>
+            </div>
+          </div>
+
+          <!-- Suggested -->
+          <div class="section-title">Suggested for you</div>
+          <div class="fav-row">
+            <div class="fav-item">
+              <div class="fav-icon q-teal">📚</div>
+              <div class="fav-label">My Courses</div>
+            </div>
+            <div class="fav-item">
+              <div class="fav-icon q-teal">🏠</div>
+              <div class="fav-label">Learning Home</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom nav -->
+        <div class="bottom-nav">
+          <div class="nav-item active">
+            <div class="nav-icon">🏠</div>
+            <div class="nav-label" style="color:var(--blue)">Home</div>
+            <div class="nav-active-dot"></div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">⏱</div>
+            <div class="nav-label">Attendance</div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">👥</div>
+            <div class="nav-label">Team</div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">📂</div>
+            <div class="nav-label">More</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="screen-label">01 · Home Screen</div>
+  </div>
+
+  <!-- ====== SCREEN 2: ATTENDANCE ====== -->
+  <div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="phone-notch"></div>
+
+        <div class="status-bar dark">
+          <span>10:28</span>
+          <div class="status-icons">
+            <div class="signal-bar" style="height:6px"></div>
+            <div class="signal-bar" style="height:8px"></div>
+            <div class="signal-bar" style="height:10px"></div>
+            <span style="margin-left:4px">4G</span>
+          </div>
+        </div>
+
+        <div class="att-header">
+          <div class="back-row">
+            <div class="back-btn">←</div>
+            <div class="page-title">Attendance</div>
+          </div>
+          <div class="clock-widget">
+            <div class="clock-time">10:27 AM</div>
+            <div class="clock-date">Thursday, 27 Feb 2026 · Office</div>
+            <div class="clock-actions">
+              <div class="clock-btn btn-punch-in">✓ Punched In 10:27</div>
+              <div class="clock-btn btn-punch-out">Punch Out</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content">
+
+          <div class="section-title" style="margin-bottom:10px">This Month</div>
+          <div class="summary-row">
+            <div class="summary-card">
+              <div class="sum-val">22</div>
+              <div class="sum-label">Present</div>
+            </div>
+            <div class="summary-card">
+              <div class="sum-val" style="color:var(--orange)">2</div>
+              <div class="sum-label">Absent</div>
+            </div>
+            <div class="summary-card">
+              <div class="sum-val" style="color:var(--teal)">3</div>
+              <div class="sum-label">On Leave</div>
+            </div>
+          </div>
+
+          <!-- Weekly bar chart placeholder -->
+          <div class="section-title" style="margin-bottom:10px">Weekly Hours</div>
+          <div style="background:white;border-radius:var(--radius);padding:14px;margin-bottom:14px;box-shadow:var(--shadow-sm);">
+            <div style="display:flex;align-items:flex-end;gap:8px;height:60px;justify-content:center;">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+                <div style="width:20px;background:var(--blue-light);border-radius:4px 4px 0 0;height:45px"></div>
+                <span style="font-size:8px;color:var(--gray-400)">Mon</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+                <div style="width:20px;background:var(--blue);border-radius:4px 4px 0 0;height:50px"></div>
+                <span style="font-size:8px;color:var(--gray-400)">Tue</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+                <div style="width:20px;background:var(--blue-light);border-radius:4px 4px 0 0;height:40px"></div>
+                <span style="font-size:8px;color:var(--gray-400)">Wed</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+                <div style="width:20px;background:var(--blue);border-radius:4px 4px 0 0;height:55px;opacity:0.4;border:2px dashed var(--blue)"></div>
+                <span style="font-size:8px;color:var(--blue);font-weight:700">Thu</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+                <div style="width:20px;background:var(--gray-100);border-radius:4px 4px 0 0;height:30px"></div>
+                <span style="font-size:8px;color:var(--gray-400)">Fri</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-top:8px">
+              <span style="font-size:9px;color:var(--gray-400)">Avg: 8.2h/day</span>
+              <span style="font-size:9px;color:var(--blue);font-weight:700">View Full Report</span>
+            </div>
+          </div>
+
+          <!-- Today's timeline -->
+          <div class="section-title" style="margin-bottom:10px">Today's Log</div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="tl-dot tl-in"></div>
+              <div class="tl-line"></div>
+              <div class="tl-info">
+                <div class="tl-type">Punch In</div>
+                <div class="tl-time">10:27 AM</div>
+                <span class="tl-tag">Office</span>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="tl-dot" style="background:var(--gray-200)"></div>
+              <div class="tl-info">
+                <div class="tl-type" style="color:var(--gray-400)">Punch Out</div>
+                <div class="tl-time" style="color:var(--gray-200)">Expected ~6:30 PM</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="bottom-nav">
+          <div class="nav-item">
+            <div class="nav-icon">🏠</div>
+            <div class="nav-label">Home</div>
+          </div>
+          <div class="nav-item active">
+            <div class="nav-icon">⏱</div>
+            <div class="nav-label" style="color:var(--blue)">Attendance</div>
+            <div class="nav-active-dot"></div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">👥</div>
+            <div class="nav-label">Team</div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">📂</div>
+            <div class="nav-label">More</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="screen-label">02 · Attendance</div>
+  </div>
+
+  <!-- ====== SCREEN 3: TEAM MANAGEMENT ====== -->
+  <div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="phone-notch"></div>
+
+        <div class="status-bar dark">
+          <span>10:28</span>
+          <div class="status-icons">
+            <div class="signal-bar" style="height:10px"></div>
+            <div class="signal-bar" style="height:12px"></div>
+            <span style="margin-left:4px">4G</span>
+          </div>
+        </div>
+
+        <div class="team-header">
+          <div class="back-row">
+            <div class="back-btn">←</div>
+            <div class="page-title">My Team</div>
+            <div style="margin-left:auto;font-size:18px">⊕</div>
+          </div>
+          <!-- Team stats strip -->
+          <div style="display:flex;gap:16px;margin-top:4px">
+            <div style="text-align:center">
+              <div style="font-size:20px;font-weight:800">8</div>
+              <div style="font-size:9px;opacity:0.7;text-transform:uppercase;letter-spacing:0.3px">Total</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:20px;font-weight:800;color:#6EFFD9">6</div>
+              <div style="font-size:9px;opacity:0.7;text-transform:uppercase;letter-spacing:0.3px">In Office</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:20px;font-weight:800;color:#FFCF85">1</div>
+              <div style="font-size:9px;opacity:0.7;text-transform:uppercase;letter-spacing:0.3px">On Leave</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:20px;font-weight:800;color:#FF9EAA">1</div>
+              <div style="font-size:9px;opacity:0.7;text-transform:uppercase;letter-spacing:0.3px">Remote</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="search-bar">
+            <span>🔍</span>
+            <input placeholder="Search team members...">
+          </div>
+
+          <div class="tabs">
+            <div class="tab active">All Members</div>
+            <div class="tab">Attendance</div>
+            <div class="tab">Leave</div>
+          </div>
+
+          <!-- Members -->
+          <div class="member-card">
+            <div class="member-avatar" style="background:var(--blue)">PK</div>
+            <div class="member-info">
+              <div class="member-name">Priya Kapoor</div>
+              <div class="member-role">Sr. Engineer · Bangalore</div>
+              <span class="status-pill s-in">● In Office</span>
+            </div>
+            <div class="member-action">💬</div>
+          </div>
+
+          <div class="member-card">
+            <div class="member-avatar" style="background:var(--teal)">RS</div>
+            <div class="member-info">
+              <div class="member-name">Rahul Sharma</div>
+              <div class="member-role">Product Manager · Mumbai</div>
+              <span class="status-pill s-in">● In Office</span>
+            </div>
+            <div class="member-action">💬</div>
+          </div>
+
+          <div class="member-card">
+            <div class="member-avatar" style="background:var(--orange)">NK</div>
+            <div class="member-info">
+              <div class="member-name">Neha Kumar</div>
+              <div class="member-role">Designer · Remote</div>
+              <span class="status-pill s-leave">● On Leave</span>
+            </div>
+            <div class="member-action">💬</div>
+          </div>
+
+          <div class="member-card">
+            <div class="member-avatar" style="background:#8B5CF6">AM</div>
+            <div class="member-info">
+              <div class="member-name">Arjun Mehra</div>
+              <div class="member-role">DevOps · Hyderabad</div>
+              <span class="status-pill s-out">● Remote</span>
+            </div>
+            <div class="member-action">💬</div>
+          </div>
+
+          <div style="text-align:center;padding:8px;font-size:11px;color:var(--blue);font-weight:700">
+            View All 8 Members →
+          </div>
+
+        </div>
+
+        <div class="bottom-nav">
+          <div class="nav-item">
+            <div class="nav-icon">🏠</div>
+            <div class="nav-label">Home</div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">⏱</div>
+            <div class="nav-label">Attendance</div>
+          </div>
+          <div class="nav-item active">
+            <div class="nav-icon">👥</div>
+            <div class="nav-label" style="color:var(--blue)">Team</div>
+            <div class="nav-active-dot"></div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">📂</div>
+            <div class="nav-label">More</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="screen-label">03 · Team Management</div>
+  </div>
+
+  <!-- ====== SCREEN 4: LEAVE ====== -->
+  <div>
+    <div class="phone">
+      <div class="phone-inner">
+        <div class="phone-notch"></div>
+
+        <div class="status-bar dark">
+          <span>10:28</span>
+          <div class="status-icons">
+            <div class="signal-bar" style="height:10px"></div>
+            <div class="signal-bar" style="height:12px"></div>
+            <span style="margin-left:4px">4G</span>
+          </div>
+        </div>
+
+        <div class="leave-header">
+          <div class="back-row" style="margin-bottom:12px">
+            <div class="back-btn">←</div>
+            <div class="page-title">Leave Management</div>
+          </div>
+          <!-- Balance strip -->
+          <div class="balance-row">
+            <div class="balance-card">
+              <div class="bal-type">Casual</div>
+              <div class="bal-days">8</div>
+              <div class="bal-label">of 12 left</div>
+              <div class="bal-bar"><div class="bal-fill" style="width:67%;background:var(--blue)"></div></div>
+            </div>
+            <div class="balance-card">
+              <div class="bal-type">Sick</div>
+              <div class="bal-days">5</div>
+              <div class="bal-label">of 6 left</div>
+              <div class="bal-bar"><div class="bal-fill" style="width:83%;background:var(--teal)"></div></div>
+            </div>
+            <div class="balance-card">
+              <div class="bal-type">Earned</div>
+              <div class="bal-days">14</div>
+              <div class="bal-label">of 24 left</div>
+              <div class="bal-bar"><div class="bal-fill" style="width:58%;background:var(--orange)"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content">
+
+          <!-- Apply form -->
+          <div class="leave-form">
+            <div class="form-title">Apply for Leave</div>
+
+            <div class="form-field">
+              <div class="field-label">Leave Type</div>
+              <div class="field-input">
+                <span>Casual Leave</span>
+                <span style="color:var(--gray-400)">▾</span>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <div class="field-label">Duration</div>
+              <div class="date-row">
+                <div class="field-input">
+                  <span>Mar 05, 2026</span>
+                  <span>📅</span>
+                </div>
+                <div class="field-input">
+                  <span>Mar 07, 2026</span>
+                  <span>📅</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <div class="field-label">Reason</div>
+              <div class="field-input" style="height:48px;align-items:flex-start;padding-top:10px">
+                <span style="color:var(--gray-400)">Add reason for leave...</span>
+              </div>
+            </div>
+
+            <button class="submit-btn">Submit Leave Request</button>
+          </div>
+
+          <!-- Leave history -->
+          <div class="section-title" style="margin-bottom:10px">Recent Requests</div>
+
+          <div class="history-item">
+            <div class="hist-color" style="background:var(--teal)"></div>
+            <div class="hist-info">
+              <div class="hist-type">Casual Leave</div>
+              <div class="hist-dates">Feb 10 – Feb 12 · 3 days</div>
+            </div>
+            <span class="hist-status h-approved">Approved</span>
+          </div>
+
+          <div class="history-item">
+            <div class="hist-color" style="background:var(--yellow)"></div>
+            <div class="hist-info">
+              <div class="hist-type">Sick Leave</div>
+              <div class="hist-dates">Jan 22 · 1 day</div>
+            </div>
+            <span class="hist-status h-pending">Pending</span>
+          </div>
+
+        </div>
+
+        <div class="bottom-nav">
+          <div class="nav-item">
+            <div class="nav-icon">🏠</div>
+            <div class="nav-label">Home</div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">⏱</div>
+            <div class="nav-label">Attendance</div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">👥</div>
+            <div class="nav-label">Team</div>
+          </div>
+          <div class="nav-item active">
+            <div class="nav-icon">📂</div>
+            <div class="nav-label" style="color:var(--blue)">More</div>
+            <div class="nav-active-dot"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="screen-label">04 · Leave Management</div>
+  </div>
+
+</div>
+
+<!-- Legend -->
+<div style="margin-top:48px;max-width:700px;width:100%;background:#1C1E30;border-radius:16px;padding:24px;color:white;">
+  <h3 style="font-size:15px;font-weight:800;margin-bottom:16px;color:white;">📐 Component Legend & Design Tokens</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;font-size:11px;">
+    <div>
+      <div style="width:100%;height:36px;background:#2B2EE8;border-radius:8px;margin-bottom:6px"></div>
+      <div style="color:#9198B0;font-weight:600">Primary Blue #2B2EE8</div>
+    </div>
+    <div>
+      <div style="width:100%;height:36px;background:#00B8A9;border-radius:8px;margin-bottom:6px"></div>
+      <div style="color:#9198B0;font-weight:600">Teal Accent #00B8A9</div>
+    </div>
+    <div>
+      <div style="width:100%;height:36px;background:#FF6B35;border-radius:8px;margin-bottom:6px"></div>
+      <div style="color:#9198B0;font-weight:600">Orange #FF6B35</div>
+    </div>
+    <div>
+      <div style="width:100%;height:36px;background:#FFD166;border-radius:8px;margin-bottom:6px"></div>
+      <div style="color:#9198B0;font-weight:600">Yellow #FFD166</div>
+    </div>
+    <div>
+      <div style="width:100%;height:36px;background:#F8F9FC;border-radius:8px;margin-bottom:6px;border:1px solid #2a2d45"></div>
+      <div style="color:#9198B0;font-weight:600">BG Surface #F8F9FC</div>
+    </div>
+  </div>
+  <div style="margin-top:16px;font-size:11px;color:#9198B0;line-height:1.7;">
+    <strong style="color:white">Screens included:</strong> Home (personalised dashboard + punch widget) · Attendance (clock-in/out, weekly chart, log) · Team Management (member list, status badges) · Leave Management (balance, apply form, history)<br><br>
+    <strong style="color:white">Font:</strong> Plus Jakarta Sans · <strong style="color:white">Radius:</strong> 16px cards, 10px chips · <strong style="color:white">Nav:</strong> 4-tab bottom bar
+  </div>
+</div>
+
+</body>
+</html>
